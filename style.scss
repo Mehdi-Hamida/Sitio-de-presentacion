@@ -1,0 +1,599 @@
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display Italic';
+    src: url('./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+}
+
+:root
+{
+    --pink: #d51067;
+    --title-font: 'Playfair Display', serif;
+    --italic-title-font: 'Playfair Display Italic', serif;
+}
+
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    margin: 0;
+    padding: 0 30px;
+    background: repeating-linear-gradient(340deg, rgba(22,15,49,1) 0%, rgba(77,23,83,1) 16%, rgba(22,15,49,1) 33%, rgba(22,15,49,1) 49%, rgba(77,23,83,1) 66%, rgba(22,15,49,1) 100%);
+    background-size: 100%;
+}
+
+
+/* ----------------- CUSTOM CURSOR ----------------- */
+#custom-cursor
+{
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    pointer-events: none; /* To prevent the custom cursor from interfering with clickable elements */
+    z-index: 9999;
+    background-color: #fff;
+    transform: translate(-50%, -50%); /* Center the cursor */
+    mix-blend-mode: difference;
+    transition: all ease 0.075s;
+}
+
+
+/* ----------------- SIDE MENU ----------------- */
+aside#side-menu
+{
+    padding: 15px 0 15px 15px;
+    position: fixed;
+    top: calc(50vh - 135px);
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+
+    &:hover > .side-menu-icon-link /* Hovering the parent lowers the items opacity */
+    {
+        opacity: 0.25;
+    }
+
+    &:hover > .side-menu-icon-link:hover /* Doesn't changes opacity of hovered item */
+    {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+
+    .side-menu-icon-link
+    {
+        transition: all ease 0.4s;
+    }
+
+    img
+    {
+        height: 30px;
+        width: 30px;
+        transition: all ease 0.3s;
+
+        &#codepen
+        {
+            height: 25px;
+            width: 25px;
+        }
+
+        &#email
+        {
+            height: 23px;
+            width: 23px;
+        }
+
+        &#linkedin
+        {
+            height: 20px;
+            width: 20px;
+        }
+
+        &#resume
+        {
+            margin-top: 5px;
+        }
+    }
+}
+
+body:has(#side-menu:hover) #custom-cursor /* Hides custom cursor with transition when hovering side menu */
+{
+    height: 0;
+    width: 0;
+}
+
+
+/* ----------------- LANDING SECTION ----------------- */
+section#landing-section
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3%;
+
+    h1
+    {
+        margin: 0;
+        position: relative;
+        width: fit-content;
+
+        span.overlay
+        {
+            display: inline-block;
+            overflow: hidden;
+            line-height: 8vw;
+
+            .fade-in-text
+            {
+                font: 900 8vw/8vw var(--title-font);
+                color: var(--pink);
+                display: block;
+                transform: translateY(100%);
+                transition: all ease 0.4s;
+                animation: spanFadeIn linear 800ms forwards;
+            }
+        }
+    }
+
+    .dynamic-text-wrapper
+    {
+        display: block;
+        width: fit-content;
+        overflow: hidden;
+        min-height: 200px; /* Avoid glitch on appearing */
+        line-height: 10vw;
+
+        &::after
+        {
+            content: "";
+            display: block;
+            transform: translateY(100%);
+            color: transparent !important;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: #fff;
+            font-family: sans-serif;
+            font-size: 8vw;
+            line-height: 10vw;
+            font-weight: 800;
+            color: #fff;
+            width: 100%;
+            animation: spanFadeIn linear 1s forwards 600ms, changingText 7s linear infinite alternate 800ms;
+        }
+    
+        @keyframes changingText
+        {
+            0%
+            {
+                content: 'Apasionado';
+                opacity: 1;
+            }
+    
+            25%
+            {
+                opacity: 0;
+            }
+    
+            50%
+            {
+                content: 'Creativo';
+                opacity: 1;
+            }
+
+            75%
+            {
+                opacity: 0;
+            }
+    
+            100%
+            {
+                content: 'Apasionado';
+                opacity: 1;
+            }
+        }
+    }
+
+    @keyframes spanFadeIn
+    {
+        0%
+        {
+            transform: translateY(100%);
+        }
+
+        100%
+        {
+            transform: translateY(0%);
+        }
+    }
+
+    #scroll-caller
+    {
+        position: absolute;
+        width: 150px;
+        height: 60px;
+        bottom: 0;
+        left: calc(50vw - 75px);
+        color: #fff;
+        font: 400 14px/14px sans-serif;
+        text-align: center;
+        
+        &::after
+        {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 74px;
+            width: 1px;
+            height: 35px;
+            background: var(--pink);
+        }
+
+        p
+        {
+            margin: 0;
+            color: #fff;
+        }
+    }
+
+    @media (max-width: 1500px)
+    {
+        .dynamic-text-wrapper
+        {
+            min-height: 100px;
+        }
+    }
+
+    @media (max-width: 850px)
+    {
+        .dynamic-text-wrapper
+        {
+            min-height: 70px;
+        }
+    }
+}
+
+
+/* ----------------- PRESENTATION SECTION ----------------- */
+section#presentation-section
+{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content-wrapper
+    { 
+        p.text
+        {
+            margin: 0 auto;
+            width: 70vw;
+            color: #fff;
+        }
+    }
+}
+
+section#skills-section
+{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .skills-row
+    {
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        gap: 50px;
+
+        i,
+        #prestashop-icon
+        {
+            height: 200px;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 0 7px rgba(213, 16, 103, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        i
+        {
+            font-size: 6rem;
+        }
+
+        #prestashop-icon img
+        {
+            height: 96px;
+            width: 96px;
+        }
+    }
+}
+
+
+/* ----------------- TIMELINE SECTION ----------------- */
+section#timeline
+{
+    /* padding-top: 66px; /* Hides the rocket from next section because it has top -56px */
+    position: relative;
+
+    &::before
+    {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: -20vh;
+        height: 100%;
+        width: 100%;
+        background: url(./img/stars.png);
+        opacity: .2;
+        padding: 20vh 0;
+    }
+
+    h2
+    {
+        font: 900 6vw/6vw var(--title-font);
+        text-align: center;
+        color: #e1e1e1;
+        margin-bottom: 200px;
+    }
+
+
+    .timeline-row
+    {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        column-gap: 100px;
+
+        &::before /* Vertical line on middle of the section */
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 2px;
+            background: var(--pink);
+            height: 100%;
+        }
+    }
+
+    #rocket-wrapper
+    {
+        position: absolute;
+        top: -56px; /* When passing to fixed, I apply a top: calc(50% - 59px) to smooth the transition, so it helps compensating this */
+        width: 60px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform ease 1s;
+        border-radius: 100px;
+        backdrop-filter: blur(40px); /* Trick to hide the line behind rocket but keeping body's background color */
+        -webkit-backdrop-filter: blur(40px);
+
+        img
+        {
+            max-width: 100%;
+
+            &#rocket-flames
+            {
+                height: 0;
+                width: 20px;
+                margin-bottom: 2px;
+                transition: height ease 1s;
+            }
+        }
+        
+        &.fixed /* Activated when the rocked is on middle of the screen */
+        {
+            position: fixed;
+            top: calc(50% - 56px); //50% screen's height - half #rocket-wrapper's height (Smoother animation starting when flames appear (doesn't pushes too much brutally the rocket to the bottom))
+
+            #rocket-flames
+            {
+                height: 50px;
+            }
+        }
+
+        &.down /* Activated when the rocked is at the end of the section */
+        {
+            top: unset;
+            bottom: 0;
+            transform: rotate(180deg);
+        }
+    }
+
+    .timeline-col
+    {
+        width: calc(50% - 50px); /* To move away from screen sides */
+
+        &.education
+        {
+            margin-top: 33vh;
+
+            ul li:last-child
+            {
+                p.date
+                {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &.experiences
+        {
+            text-align: right;
+
+            p.date
+            {
+                margin: 0 0 0 auto;
+            }
+
+            #crossed-fingers
+            {
+                position: relative;
+                margin-bottom: -5px;
+                margin-left: 2px;
+                width: 16px;
+            }
+
+            ul li#justify-start /* Makes it start at the same level as the middle line */
+            {
+                justify-content: start;
+            }
+        }
+
+        ul /* General styles for the lists of the two columns */
+        {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            row-gap: 33vh;
+
+            li
+            {
+                color: #fff;
+                transition: opacity ease 0.4s;
+
+                &:not(.highlight)
+                {
+                    opacity: 0.05;
+                }
+
+                &.highlight
+                {
+                    opacity: 1;
+                }
+
+                &:not(.timeline-col.education ul li:last-child) /* Every <li> except the ultimate to makes it end at the same level as the middle line */
+                {
+                    min-height: 33vh;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                h4
+                {
+                    margin: 0 0 15px;
+                    font: normal 700 2rem/2.2rem var(--title-font);
+                    letter-spacing: 0.5px;
+
+                    span.pink
+                    {
+                        color: var(--pink);
+                        font-weight: 900;
+                        font-style: italic;
+                        font-family: var(--italic-title-font);
+                        letter-spacing: 0;
+                    }
+                }
+
+                p.date
+                {
+                    position: relative;
+                    width: fit-content;
+                    font: italic 300 16px/20px sans-serif;
+                    letter-spacing: 1px;
+
+                    &::after
+                    {
+                        content: "";
+                        position: absolute;
+                        right: 0;
+                        width: 50%;
+                        bottom: -5px;
+                        border-bottom: 1px solid var(--pink);
+                    }
+                }
+
+                p
+                {
+                    font: 300 14px/20px sans-serif;
+                }
+            }
+        }
+    }
+}
+
+
+/* ----------------- END SECTION ----------------- */
+section#end-section
+{
+    height: 150vh;
+    padding-top: 20vh;
+    position: relative;
+
+    header
+    {
+        position: sticky;
+        top: 0;
+        left: 30px;
+        width: calc(100% - 60px); /* Compensate body's sides padding */
+        z-index: 1;
+        margin-bottom: 150px;
+        
+        #name
+        {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            column-gap: 40px;
+            font: 500 10vw/10vw monospace;
+            color: transparent;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: var(--pink);
+            width: fit-content;
+            margin: 0 auto;
+
+            .to-show
+            {
+                transition: all ease 0.6s;
+                opacity: 0;
+                font-size: 0;
+
+                &.shown
+                {
+                    opacity: 1;
+                    font-size: 10vw;
+                }
+            }
+        }
+    }
+
+    .content-wrapper
+    {
+        margin-top: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p#to-be-continued
+        {
+            font: 900 3rem/3rem var(--title-font);
+            color: #fff;
+        }
+    }
+}
+
+/* OPTIONNEL */
+section
+{
+    min-height: 100vh;
+}
