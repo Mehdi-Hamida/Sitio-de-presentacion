@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0 30px;
@@ -130,7 +134,7 @@ section#landing-section .dynamic-text-wrapper::after {
   font-weight: 800;
   color: #fff;
   width: 100%;
-  animation: spanFadeIn linear 1s forwards 600ms, changingText 7s linear infinite alternate 800ms;
+  animation: spanFadeIn cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards 600ms, changingText 7s linear infinite alternate 800ms;
 }
 @keyframes changingText {
   0% {
@@ -196,15 +200,49 @@ section#landing-section #scroll-caller p {
 
 /* ----------------- PRESENTATION SECTION ----------------- */
 section#presentation-section {
-  height: 100vh;
+  min-height: 100vh;
+  padding: 0 5vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* TEST ZONE */
 }
-section#presentation-section .content-wrapper p.text {
-  margin: 0 auto;
-  width: 70vw;
+section#presentation-section .intro {
+  margin: 50vh 0;
+  text-align: center;
+}
+section#presentation-section #coding-illustration {
+  min-width: 300px;
+  max-width: 500px;
+  float: right;
+  shape-outside: url(./img/hands-coding.svg);
+  shape-margin: 10px;
+}
+section#presentation-section p {
+  font: 400 1.2rem/2.2rem sans-serif;
   color: #fff;
+}
+section#presentation-section p .blur {
+  filter: blur(1.5px);
+}
+section#presentation-section #interesting-website-button {
+  position: relative; /* Makes it able to move away */
+  transition: all ease 0.1s;
+}
+section#presentation-section #interesting-website-button {
+  margin: 10px 0;
+  padding: 15px 30px;
+  display: inline-block;
+  border: none;
+  border-radius: 50px;
+  background: var(--pink);
+  color: #fff;
+  font: 400 1.2rem/1.2rem sans-serif;
+  text-decoration: none;
+}
+section#presentation-section #presentation-content {
+  scroll-margin-top: 15vh;
 }
 
 section#skills-section {
@@ -288,7 +326,6 @@ section#timeline #rocket-wrapper {
   align-items: center;
   transition: transform ease 1s;
   border-radius: 100px;
-  backdrop-filter: blur(40px); /* Trick to hide the line behind rocket but keeping body's background color */
   -webkit-backdrop-filter: blur(40px);
 }
 section#timeline #rocket-wrapper img {
@@ -298,6 +335,7 @@ section#timeline #rocket-wrapper img#rocket-flames {
   height: 0;
   width: 20px;
   margin-bottom: 2px;
+  filter: drop-shadow(0px -5px 20px var(--pink)); /* Gives an illuminated halo effect around the flames */
   transition: height ease 1s;
 }
 section#timeline #rocket-wrapper.fixed {
@@ -318,8 +356,14 @@ section#timeline .timeline-col {
 section#timeline .timeline-col.education {
   margin-top: 33vh;
 }
+section#timeline .timeline-col.education ul li:last-child {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 section#timeline .timeline-col.education ul li:last-child p.date {
-  margin-bottom: 0;
+  margin: 0;
 }
 section#timeline .timeline-col.experiences {
   text-align: right;
@@ -408,8 +452,8 @@ section#end-section header #name {
   margin: 0;
   display: flex;
   justify-content: center;
-  column-gap: 40px;
-  font: 500 10vw/10vw monospace;
+  column-gap: 25px;
+  font: 500 6rem/6rem monospace;
   color: transparent;
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: var(--pink);
