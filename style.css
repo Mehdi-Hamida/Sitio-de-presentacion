@@ -1,15 +1,9 @@
-@font-face {
-  font-family: "Playfair Display";
-  src: url("./fonts/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Playfair Display Italic";
-  src: url("./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf") format("truetype");
-}
 :root {
   --pink: #d51067;
-  --title-font: "Playfair Display", serif;
-  --italic-title-font: "Playfair Display Italic", serif;
+  --white: #e1e1e1;
+  --title-font: "DM Serif Display", serif;
+  --alternative-title-font: "Playfair Display", serif;
+  --font: "Poppins", serif;
 }
 
 * {
@@ -27,20 +21,56 @@ body {
   background-size: 100%;
 }
 
-/* ----------------- CUSTOM CURSOR ----------------- */
-#custom-cursor {
-  position: fixed;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  pointer-events: none; /* To prevent the custom cursor from interfering with clickable elements */
-  z-index: 9999;
-  background-color: #fff;
-  transform: translate(-50%, -50%); /* Center the cursor */
-  mix-blend-mode: difference;
-  transition: all ease 0.075s;
+h2 {
+  font: 400 6vw/6vw var(--title-font);
+  text-align: center;
+  color: var(--white);
+  letter-spacing: 1px;
+  margin-bottom: 100px;
 }
 
+h3 {
+  font: 400 30px/1.2 var(--title-font);
+  text-align: center;
+  color: var(--white);
+}
+
+a:not(.btn a) {
+  color: var(--white);
+  text-decoration: 1px underline var(--white);
+  text-underline-offset: 5px;
+  transition: all ease 0.4s;
+}
+a:not(.btn a):hover {
+  text-decoration-color: transparent;
+}
+
+.card {
+  margin: 0 auto;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+}
+.card p {
+  margin-top: 0;
+}
+
+/* ----------------- CUSTOM CURSOR ----------------- */
+/*#custom-cursor
+{
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    pointer-events: none; /* To prevent the custom cursor from interfering with clickable elements */
+/*z-index: 9999;
+background-color: var(--white);
+transform: translate(-50%, -50%); /* Center the cursor */
+/*mix-blend-mode: difference;
+    transition: all ease 0.075s;
+}*/
 /* ----------------- SIDE MENU ----------------- */
 aside#side-menu {
   padding: 15px 0 15px 15px;
@@ -68,9 +98,9 @@ aside#side-menu img {
   width: 30px;
   transition: all ease 0.3s;
 }
-aside#side-menu img#codepen {
-  height: 25px;
-  width: 25px;
+aside#side-menu img#whatsapp {
+  height: 28px;
+  width: 28px;
 }
 aside#side-menu img#email {
   height: 23px;
@@ -107,34 +137,33 @@ section#landing-section h1 span.overlay {
   line-height: 8vw;
 }
 section#landing-section h1 span.overlay .fade-in-text {
-  font: 900 8vw/8vw var(--title-font);
+  font: 400 9vw/9vw var(--title-font);
   color: var(--pink);
   display: block;
   transform: translateY(100%);
   transition: all ease 0.4s;
   animation: spanFadeIn linear 800ms forwards;
 }
-section#landing-section .dynamic-text-wrapper {
+section#landing-section .dynamic-text_wrapper {
   display: block;
   width: fit-content;
   overflow: hidden;
-  min-height: 200px; /* Avoid glitch on appearing */
+  min-height: 180px; /* Avoid glitch on appearing */
   line-height: 10vw;
 }
-section#landing-section .dynamic-text-wrapper::after {
+section#landing-section .dynamic-text_wrapper::after {
   content: "";
   display: block;
   transform: translateY(100%);
-  color: transparent !important;
+  color: transparent;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #fff;
-  font-family: sans-serif;
+  -webkit-text-stroke-color: var(--white);
+  font-family: var(--font);
   font-size: 8vw;
   line-height: 10vw;
   font-weight: 800;
-  color: #fff;
   width: 100%;
-  animation: spanFadeIn cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards 600ms, changingText 7s linear infinite alternate 800ms;
+  animation: spanFadeIn cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards 1000ms, changingText 7s linear infinite alternate 800ms;
 }
 @keyframes changingText {
   0% {
@@ -166,26 +195,27 @@ section#landing-section .dynamic-text-wrapper::after {
 }
 section#landing-section #scroll-caller {
   position: absolute;
-  width: 150px;
+  width: 160px;
   height: 60px;
   bottom: 0;
-  left: calc(50vw - 75px);
-  color: #fff;
-  font: 400 14px/14px sans-serif;
+  left: calc(50% - 80px);
+  color: var(--white);
+  font: 400 14px/14px var(--font);
   text-align: center;
 }
 section#landing-section #scroll-caller::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 74px;
-  width: 1px;
+  left: 79px;
+  width: 2px;
   height: 35px;
   background: var(--pink);
+  z-index: -1;
 }
 section#landing-section #scroll-caller p {
   margin: 0;
-  color: #fff;
+  color: var(--white);
 }
 @media (max-width: 1500px) {
   section#landing-section .dynamic-text-wrapper {
@@ -206,52 +236,65 @@ section#presentation-section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* TEST ZONE */
+  font: 400 18px/1.8 var(--font);
+  color: var(--white);
 }
 section#presentation-section .intro {
-  margin: 50vh 0;
+  margin: 25vh 0 50vh;
   text-align: center;
 }
-section#presentation-section #coding-illustration {
-  min-width: 300px;
-  max-width: 500px;
-  float: right;
-  shape-outside: url(./img/hands-coding.svg);
-  shape-margin: 10px;
-}
-section#presentation-section p {
-  font: 400 1.2rem/2.2rem sans-serif;
-  color: #fff;
-}
-section#presentation-section p .blur {
-  filter: blur(1.5px);
-}
-section#presentation-section #interesting-website-button {
+section#presentation-section .intro #interesting-website-button {
+  margin: 15px 0 0;
   position: relative; /* Makes it able to move away */
-  transition: all ease 0.1s;
-}
-section#presentation-section #interesting-website-button {
-  margin: 10px 0;
   padding: 15px 30px;
   display: inline-block;
   border: none;
   border-radius: 50px;
   background: var(--pink);
-  color: #fff;
-  font: 400 1.2rem/1.2rem sans-serif;
+  color: var(--white);
+  font: 400 1.2rem/1.2rem var(--font);
   text-decoration: none;
+  transition: all ease 0.1s;
 }
 section#presentation-section #presentation-content {
   scroll-margin-top: 15vh;
-}
-
-section#skills-section {
-  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 1400px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+section#presentation-section #presentation-content .content-col.text {
+  width: calc(100% - 400px);
+}
+section#presentation-section #presentation-content .content-col.text p {
+  font: 400 1.2rem/2.2rem var(--font);
+  color: var(--white);
+}
+section#presentation-section #presentation-content .content-col.text p .blur {
+  filter: blur(1.5px);
+}
+section#presentation-section #presentation-content .content-col.img {
+  width: 350px;
+  display: flex;
   align-items: center;
 }
+section#presentation-section #presentation-content .content-col.img #my-picture {
+  max-width: 100%;
+  padding: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* ----------------- SKILLS SECTION ----------------- */
+section#skills-section {
+  min-height: 100vh;
+  padding: 130px 0 75px;
+}
 section#skills-section .skills-row {
+  margin: 0 auto;
   width: 80vw;
   display: flex;
   justify-content: center;
@@ -259,23 +302,66 @@ section#skills-section .skills-row {
   flex-wrap: wrap;
   gap: 50px;
 }
-section#skills-section .skills-row i,
-section#skills-section .skills-row #prestashop-icon {
-  height: 200px;
-  width: 200px;
-  border-radius: 10px;
-  box-shadow: 0 0 7px rgb(213, 16, 103);
+section#skills-section .skills-row .skill-card {
+  width: calc(25% - 38px);
+  min-height: 350px;
+  position: relative;
+  overflow: hidden;
+  padding: 50px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  transform-style: preserve-3d;
+  perspective: 1000px; /* Ajoute la perspective */
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  gap: 30px;
+}
+section#skills-section .skills-row .skill-card .card-shine {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.4);
+  filter: blur(150px);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: opacity ease 1s;
+}
+section#skills-section .skills-row .skill-card:hover .card-shine {
+  left: var(--x);
+  top: var(--y);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+section#skills-section .skills-row .skill-card_title {
+  margin: 0;
+  font: 700 30px/1.2 var(--font);
+  color: var(--white);
 }
 section#skills-section .skills-row i {
   font-size: 6rem;
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  background: linear-gradient(45deg, #ff0071 0%, #ff68ab 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
-section#skills-section .skills-row #prestashop-icon img {
+section#skills-section .skills-row #prestashop-icon svg {
   height: 96px;
   width: 96px;
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
 }
 
 /* ----------------- TIMELINE SECTION ----------------- */
@@ -287,7 +373,6 @@ section#timeline::before {
   content: "";
   position: absolute;
   z-index: 0;
-  top: -20vh;
   height: 100%;
   width: 100%;
   background: url(./img/stars.png);
@@ -295,9 +380,6 @@ section#timeline::before {
   padding: 20vh 0;
 }
 section#timeline h2 {
-  font: 900 6vw/6vw var(--title-font);
-  text-align: center;
-  color: #e1e1e1;
   margin-bottom: 200px;
 }
 section#timeline .timeline-row {
@@ -354,7 +436,7 @@ section#timeline .timeline-col {
   width: calc(50% - 50px); /* To move away from screen sides */
 }
 section#timeline .timeline-col.education {
-  margin-top: 33vh;
+  margin-top: 40vh;
 }
 section#timeline .timeline-col.education ul li:last-child {
   height: 15vh;
@@ -369,7 +451,7 @@ section#timeline .timeline-col.experiences {
   text-align: right;
 }
 section#timeline .timeline-col.experiences p.date {
-  margin: 0 0 0 auto;
+  margin: 16px 0 16px auto;
 }
 section#timeline .timeline-col.experiences #crossed-fingers {
   position: relative;
@@ -386,10 +468,10 @@ section#timeline .timeline-col ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  row-gap: 33vh;
+  row-gap: 40vh;
 }
 section#timeline .timeline-col ul li {
-  color: #fff;
+  color: var(--white);
   transition: opacity ease 0.4s;
 }
 section#timeline .timeline-col ul li:not(.highlight) {
@@ -399,28 +481,28 @@ section#timeline .timeline-col ul li.highlight {
   opacity: 1;
 }
 section#timeline .timeline-col ul li:not(.timeline-col.education ul li:last-child) {
-  min-height: 33vh;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 section#timeline .timeline-col ul li h4 {
   margin: 0 0 15px;
-  font: normal 700 2rem/2.2rem var(--title-font);
+  font: normal 400 2rem/1.2 var(--title-font);
   letter-spacing: 0.5px;
 }
 section#timeline .timeline-col ul li h4 span.pink {
   color: var(--pink);
   font-weight: 900;
   font-style: italic;
-  font-family: var(--italic-title-font);
+  font-family: var(--alternative-title-font);
   letter-spacing: 0;
 }
 section#timeline .timeline-col ul li p.date {
   position: relative;
   width: fit-content;
-  font: italic 300 16px/20px sans-serif;
-  letter-spacing: 1px;
+  font: italic 300 20px/1.4 var(--font);
+  letter-spacing: 0.5px;
 }
 section#timeline .timeline-col ul li p.date::after {
   content: "";
@@ -431,58 +513,68 @@ section#timeline .timeline-col ul li p.date::after {
   border-bottom: 1px solid var(--pink);
 }
 section#timeline .timeline-col ul li p {
-  font: 300 14px/20px sans-serif;
+  font: 300 16px/1.4 var(--font);
 }
 
 /* ----------------- END SECTION ----------------- */
 section#end-section {
-  height: 150vh;
-  padding-top: 20vh;
-  position: relative;
+  /*header
+  {
+      position: sticky;
+      top: 0;
+      left: 30px;
+      width: calc(100% - 60px);
+      z-index: 1;
+      margin-bottom: 150px;
+
+      #name
+      {
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          column-gap: 25px;
+          font: 500 6rem/6rem monospace;
+          color: transparent;
+          -webkit-text-stroke-width: 3px;
+          -webkit-text-stroke-color: var(--pink);
+          width: fit-content;
+          margin: 0 auto;
+
+          .to-show
+          {
+              transition: all ease 0.6s;
+              opacity: 0;
+              font-size: 0;
+
+              &.shown
+              {
+                  opacity: 1;
+                  font-size: 10vw;
+              }
+          }
+      }
+  }*/
+  /*.content-wrapper
+  {
+      margin-top: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      p#to-be-continued
+      {
+          font: 400 3rem/3rem var(--title-font);
+          color: var(--white);
+      }
+  }*/
 }
-section#end-section header {
-  position: sticky;
-  top: 0;
-  left: 30px;
-  width: calc(100% - 60px); /* Compensate body's sides padding */
-  z-index: 1;
-  margin-bottom: 150px;
-}
-section#end-section header #name {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  column-gap: 25px;
-  font: 500 6rem/6rem monospace;
-  color: transparent;
-  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: var(--pink);
-  width: fit-content;
-  margin: 0 auto;
-}
-section#end-section header #name .to-show {
-  transition: all ease 0.6s;
-  opacity: 0;
-  font-size: 0;
-}
-section#end-section header #name .to-show.shown {
-  opacity: 1;
-  font-size: 10vw;
-}
-section#end-section .content-wrapper {
-  margin-top: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-section#end-section .content-wrapper p#to-be-continued {
-  font: 900 3rem/3rem var(--title-font);
-  color: #fff;
+section#end-section h2 {
+  padding-top: 10vh;
 }
 
 /* OPTIONNEL */
 section {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /*# sourceMappingURL=style.css.map */

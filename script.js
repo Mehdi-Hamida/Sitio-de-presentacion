@@ -1,5 +1,5 @@
 /* Targets the mouse cursor to apply styles */
-document.addEventListener("DOMContentLoaded", function()
+/*document.addEventListener("DOMContentLoaded", function()
 {
   const cursor = document.getElementById("custom-cursor");
 
@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function()
     cursor.style.left = x + "px";
     cursor.style.top = y + "px";
   });
-});
+});*/
 
 
 /* Makes button of presentation section run away from mouse */
 function runaway(id)
 {
-  id.style.top = Math.round(Math.random() * 30) - 15 + 'vh';
-  id.style.left = Math.round(Math.random() * 50) - 25 + 'vw';
+  id.style.top = Math.round(Math.random() * 60) - 15 + 'px';
+  id.style.left = Math.round(Math.random() * 60) - 25 + '%';
 }
 
 
@@ -71,7 +71,7 @@ function highlightTimelineItem()
   {
       var rect = item.getBoundingClientRect();
       var windowHeight = window.innerHeight;
-      var scrollOffset = windowHeight / 3; // 33vh après l'élément
+      var scrollOffset = windowHeight / 2.5; // 40vh après l'élément
 
       // Calculer la distance entre le haut de l'élément et le point de défilement
       var distance = Math.abs(rect.top - scrollOffset);
@@ -94,6 +94,143 @@ function highlightTimelineItem()
 window.addEventListener('scroll', highlightTimelineItem);
 
 
+
+const cards = document.querySelectorAll('.skill-card');
+
+
+/* Shining cards effect */
+cards.forEach(card =>
+{
+    const shine = card.querySelector('.card-shine');
+
+    card.addEventListener('mousemove', (e) =>
+    {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Positionne le centre du halo directement sous la souris
+        shine.style.left = `${x}px`;
+        shine.style.top = `${y}px`;
+        shine.style.opacity = '1';
+    });
+
+    card.addEventListener('mouseleave', () =>
+    {
+        shine.style.opacity = '0';
+    });
+});
+
+
+/* Rotating cards effect */
+/* Shining cards effect */
+cards.forEach(card =>
+  {
+      const shine = card.querySelector('.card-shine');
+  
+      card.addEventListener('mousemove', (e) =>
+      {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+  
+          // Positionne le centre du halo directement sous la souris
+          shine.style.left = `${x}px`;
+          shine.style.top = `${y}px`;
+          shine.style.opacity = '1';
+      });
+  
+      card.addEventListener('mouseleave', () =>
+      {
+          shine.style.opacity = '0';
+      });
+  });
+  
+
+  
+/* Shining cards effect */
+cards.forEach(card =>
+{
+    const shine = card.querySelector('.card-shine');
+
+    card.addEventListener('mousemove', (e) =>
+    {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Positionne le centre du halo directement sous la souris
+        shine.style.left = `${x}px`;
+        shine.style.top = `${y}px`;
+        shine.style.opacity = '1';
+    });
+
+    card.addEventListener('mouseleave', () =>
+    {
+        shine.style.opacity = '0';
+    });
+});
+  
+  
+/* Rotating cards and rotating shadows effects */
+cards.forEach(card =>
+{
+    const icons = card.querySelectorAll('i, #prestashop-icon svg');
+    const titles = card.querySelectorAll('h3.skill-card_title');
+
+    card.addEventListener('mousemove', (e) =>
+    {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Inverser les rotations pour rapprocher la carte dans la direction de la souris
+        const rotateX = ((y - rect.height / 2) / rect.height) * 15; // Inversion pour axe X
+        const rotateY = ((rect.width / 2 - x) / rect.width) * 15;   // Inversion pour axe Y
+
+        // Ajoute une translation Z pour accentuer l'effet de rapprochement
+        const translateZ = 20; // Ajuste cette valeur pour plus de profondeur
+
+        // Applique la rotation et translation Z avec perspective
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`;
+        card.style.transition = 'transform ease 0.1s';
+
+        // Calcul de la position du drop-shadow
+        const shadowX = -rotateY * 2; // Ajuste le multiplicateur pour l'intensité
+        const shadowY = rotateX * 2; // Ajuste le multiplicateur pour l'intensité
+
+        // Applique le drop-shadow aux icônes
+        icons.forEach(icon =>
+        {
+            icon.style.filter = `drop-shadow(${shadowX}px ${shadowY}px 3px #160f31)`;
+        });
+
+        // Applique le text-shadow aux titres
+        titles.forEach(title =>
+        {
+            title.style.textShadow = `${shadowX}px ${shadowY}px 5px #160f31`;
+        });
+    });
+
+    card.addEventListener('mouseleave', () =>
+    {
+        // Réinitialise la rotation et les effets
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        card.style.transition = 'transform ease 1s';
+
+        icons.forEach(icon =>
+        {
+            icon.style.filter = 'drop-shadow(0px 0px 0px #160f31)';
+        });
+
+        titles.forEach(title =>
+        {
+            title.style.textShadow = '0px 0px 3px #160f31';
+        });
+    });
+});
+  
+  
 
 /* ------------- TEST ZONE ------------- */
 
