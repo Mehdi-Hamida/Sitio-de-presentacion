@@ -1,18 +1,4 @@
-/* Targets the mouse cursor to apply styles */
-/*document.addEventListener("DOMContentLoaded", function()
-{
-  const cursor = document.getElementById("custom-cursor");
-
-  document.addEventListener("mousemove", function(e)
-  {
-    const x = e.clientX;
-    const y = e.clientY;
-
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-  });
-});*/
-
+/* -------------------- PRESENTATION SECTION -------------------- */
 
 /* Makes button of presentation section run away from mouse */
 function runaway(id)
@@ -22,8 +8,55 @@ function runaway(id)
 }
 
 
+document.addEventListener("DOMContentLoaded", function ()
+{
+    const presentationSection = document.querySelector("#presentation-section");
+    const presentationContent = document.querySelector("#presentation-content");
+
+    if (presentationSection && presentationContent)
+    {
+        window.addEventListener("scroll", function ()
+        {
+            const sectionRect = presentationSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+
+            if (windowWidth > 768)
+            {
+                // Ajoute la classe quand le bas de la section atteint le bas de l'écran
+                if (sectionRect.bottom <= windowHeight)
+                {
+                    presentationContent.classList.add("visible");
+                }
+                else
+                {
+                    presentationContent.classList.remove("visible");
+                }
+            }
+            else
+            {
+                // Ajoute la classe quand le milieu de la section atteint le milieu de l'écran
+                const sectionMiddle = sectionRect.top + sectionRect.height / 2;
+                const windowMiddle = windowHeight / 2;
+
+                if (sectionMiddle <= windowMiddle)
+                {
+                    presentationContent.classList.add("visible");
+                }
+                else
+                {
+                    presentationContent.classList.remove("visible");
+                }
+            }
+        });
+    }
+});
+
+
+/* -------------------- TIMELINE SECTION -------------------- */
+
 const timelineWrapper = document.getElementById("timeline-wrapper");
-const timelineFixedDate = document.getElementById("rocket-wrapper");
+const rocketWrapper = document.getElementById("rocket-wrapper");
 
 /* Adds classes to the rocket icon from timeline section */
 window.addEventListener("scroll", () =>
@@ -34,20 +67,20 @@ window.addEventListener("scroll", () =>
 
   if (sectionTopToTopViewport <= windowHeight / 2 && sectionBottomToTopViewport >= windowHeight / 2)
   {
-    timelineFixedDate.classList.add("fixed");
-    timelineFixedDate.classList.remove("down");
+    rocketWrapper.classList.add("fixed");
+    rocketWrapper.classList.remove("down");
   }
   
   else if (sectionBottomToTopViewport <= windowHeight / 2)
   {
-    timelineFixedDate.classList.remove("fixed"); 
-    timelineFixedDate.classList.add("down");
+    rocketWrapper.classList.remove("fixed"); 
+    rocketWrapper.classList.add("down");
   }
   
   else
   {
-    timelineFixedDate.classList.remove("fixed");
-    timelineFixedDate.classList.remove("down");
+    rocketWrapper.classList.remove("fixed");
+    rocketWrapper.classList.remove("down");
   }
 });
 
@@ -55,7 +88,7 @@ window.addEventListener("scroll", () =>
 // Highlits nearest element from the timeline's rocket
 function highlightTimelineItem()
 {
-  var timelineItems = document.querySelectorAll('.timeline-row .timeline-item');
+  let timelineItems = document.querySelectorAll('.timeline-row .timeline-item');
 
   // Supprimer la classe highlight de tous les éléments de la timeline
   timelineItems.forEach(function(item)
@@ -64,17 +97,17 @@ function highlightTimelineItem()
   });
 
   // Déterminer l'élément le plus proche de la position de défilement
-  var closestItem = null;
-  var closestDistance = Infinity;
+  let closestItem = null;
+  let closestDistance = Infinity;
 
   timelineItems.forEach(function(item)
   {
-      var rect = item.getBoundingClientRect();
-      var windowHeight = window.innerHeight;
-      var scrollOffset = windowHeight / 2.5; // 40vh après l'élément
+      let rect = item.getBoundingClientRect();
+      let windowHeight = window.innerHeight;
+      let scrollOffset = windowHeight / 2.5; // 40vh après l'élément
 
       // Calculer la distance entre le haut de l'élément et le point de défilement
-      var distance = Math.abs(rect.top - scrollOffset);
+      let distance = Math.abs(rect.top - scrollOffset);
 
       // Mettre à jour l'élément le plus proche
       if (distance < closestDistance)
@@ -95,59 +128,10 @@ window.addEventListener('scroll', highlightTimelineItem);
 
 
 
+/* -------------------- SKILLS SECTION -------------------- */
+
 const cards = document.querySelectorAll('.skill-card');
 
-
-/* Shining cards effect */
-cards.forEach(card =>
-{
-    const shine = card.querySelector('.card-shine');
-
-    card.addEventListener('mousemove', (e) =>
-    {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Positionne le centre du halo directement sous la souris
-        shine.style.left = `${x}px`;
-        shine.style.top = `${y}px`;
-        shine.style.opacity = '1';
-    });
-
-    card.addEventListener('mouseleave', () =>
-    {
-        shine.style.opacity = '0';
-    });
-});
-
-
-/* Rotating cards effect */
-/* Shining cards effect */
-cards.forEach(card =>
-  {
-      const shine = card.querySelector('.card-shine');
-  
-      card.addEventListener('mousemove', (e) =>
-      {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-  
-          // Positionne le centre du halo directement sous la souris
-          shine.style.left = `${x}px`;
-          shine.style.top = `${y}px`;
-          shine.style.opacity = '1';
-      });
-  
-      card.addEventListener('mouseleave', () =>
-      {
-          shine.style.opacity = '0';
-      });
-  });
-  
-
-  
 /* Shining cards effect */
 cards.forEach(card =>
 {
@@ -229,41 +213,3 @@ cards.forEach(card =>
         });
     });
 });
-  
-  
-
-/* ------------- TEST ZONE ------------- */
-
-/* Detects when ultimate section is scrolled at the bottom and when it's not */
-/*const {scrollTop, clientHeight} = document.documentElement;
-const endSection = document.getElementById("end-section");
-const lettersToShow = document.querySelectorAll(".to-show");
-
-window.addEventListener("scroll", () =>
-{
-  const endSectionRect = endSection.getBoundingClientRect();
-  const endSectionTop = endSectionRect.top;
-  const endSectionHeight = endSectionRect.height;
-
-  // Calcul de la position verticale du bas de l'écran
-  const bottomOfViewport = scrollTop + clientHeight;
-
-  // Calcul de la position verticale du bas de la section finale
-  const bottomOfEndSection = endSectionTop + endSectionHeight;
-
-  // Vérification si la section finale est visible au maximum vers le bas
-  const endSectionInViewport = bottomOfEndSection <= bottomOfViewport;
-
-  // Si la section finale est visible au maximum vers le bas, déclenchez les actions
-  if (endSectionInViewport)
-  {
-    console.log("La section finale est visible au maximum vers le bas !");
-    lettersToShow.forEach(letter => letter.classList.add("shown"));
-  }
-  
-  else
-  {
-    // Si la section finale n'est pas visible au maximum vers le bas, retirez la classe 'shown'
-    lettersToShow.forEach(letter => letter.classList.remove("shown"));
-  }
-});*/
