@@ -28,11 +28,8 @@ document.addEventListener("DOMContentLoaded", function ()
                 {
                     presentationContent.classList.add("visible");
                 }
-                else
-                {
-                    presentationContent.classList.remove("visible");
-                }
             }
+
             else
             {
                 // Ajoute la classe quand le milieu de la section atteint le milieu de l'écran
@@ -42,10 +39,6 @@ document.addEventListener("DOMContentLoaded", function ()
                 if (sectionMiddle <= windowMiddle)
                 {
                     presentationContent.classList.add("visible");
-                }
-                else
-                {
-                    presentationContent.classList.remove("visible");
                 }
             }
         });

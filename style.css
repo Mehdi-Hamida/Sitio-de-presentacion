@@ -699,7 +699,9 @@ section#end-section .footer-link_wrapper:hover > .footer-link img:hover {
     margin-top: 0;
   }
   section#landing-section {
-    gap: 30px;
+    padding: 20px;
+    justify-content: flex-start;
+    gap: 10px;
   }
   section#landing-section h1 span.overlay {
     width: 100%;
@@ -725,7 +727,7 @@ section#end-section .footer-link_wrapper:hover > .footer-link img:hover {
     border-left: 2px solid var(--pink);
   }
   section#presentation-section #presentation-content .content-col.img img {
-    max-width: 100%;
+    max-width: 200px;
   }
   section#skills-section .skills-row .skill-card {
     width: 100%;
@@ -746,6 +748,19 @@ section#end-section .footer-link_wrapper:hover > .footer-link img:hover {
   }
   section#timeline .timeline-row #rocket-wrapper.fixed #rocket-flames {
     height: 40px;
+  }
+  section#end-section .footer-link_wrapper {
+    margin: 15vh auto 0;
+    gap: 8vh;
+  }
+  section#end-section .footer-link_wrapper .footer-link img {
+    max-width: 60px;
+  }
+  section#end-section .footer-link_wrapper .footer-link img#footer-email {
+    max-width: 55px;
+  }
+  section#end-section .footer-link_wrapper .footer-link img#footer-linkedin {
+    max-width: 50px;
   }
 }
 @media (max-width: 290px) {

@@ -986,7 +986,9 @@ section#end-section
 
     section#landing-section 
     {
-        gap: 30px;
+        padding: 20px;
+        justify-content: flex-start;
+        gap: 10px;
 
         h1 span.overlay
         {
@@ -1031,7 +1033,7 @@ section#end-section
 
             .content-col.img img
             {
-                max-width: 100%;
+                max-width: 200px;
             }
         }
     }
@@ -1069,6 +1071,30 @@ section#end-section
                 &.fixed #rocket-flames
                 {
                     height: 40px;
+                }
+            }
+        }
+    }
+
+    section#end-section
+    {
+        .footer-link_wrapper
+        {
+            margin: 15vh auto 0;
+            gap: 8vh;
+
+            .footer-link img
+            {
+                max-width: 60px;
+
+                &#footer-email
+                {
+                    max-width: 55px;
+                }
+
+                &#footer-linkedin
+                {
+                    max-width: 50px;
                 }
             }
         }
