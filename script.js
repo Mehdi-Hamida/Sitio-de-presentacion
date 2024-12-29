@@ -1,10 +1,13 @@
 /* -------------------- PRESENTATION SECTION -------------------- */
 
 /* Makes button of presentation section run away from mouse */
-function runaway(id)
+if (windowWidth > 768)
 {
-  id.style.top = Math.round(Math.random() * 60) - 15 + 'px';
-  id.style.left = Math.round(Math.random() * 60) - 25 + '%';
+    function runaway(id)
+    {
+      id.style.top = Math.round(Math.random() * 60) - 15 + 'px';
+      id.style.left = Math.round(Math.random() * 60) - 25 + '%';
+    }
 }
 
 
