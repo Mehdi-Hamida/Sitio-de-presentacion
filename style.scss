@@ -311,6 +311,11 @@ section#presentation-section
                 margin-top: 0;
             }
 
+            a.presentation-content_links
+            {
+                cursor: pointer;
+            }
+
             #interesting-website-button
             {
                 margin: 15px 0 0;
@@ -539,7 +544,6 @@ section#timeline
         align-items: center;
         transition: transform ease 1s;
         border-radius: 100px;
-        -webkit-backdrop-filter: blur(40px);
 
         #rocket-flames
         {

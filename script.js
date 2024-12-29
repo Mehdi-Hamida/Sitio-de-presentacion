@@ -1,5 +1,29 @@
 /* -------------------- PRESENTATION SECTION -------------------- */
 
+/* Makes anchors in JS to avoid anchor persistency in the URL after page refreshs */
+document.addEventListener("DOMContentLoaded", function ()
+{
+    const links = document.querySelectorAll(".presentation-content_links");
+
+    links.forEach(function (link)
+    {
+        link.addEventListener("click", function (event)
+        {
+            // Empêcher l'ancre de s'ajouter à l'URL
+            event.preventDefault();
+
+            // Faire défiler jusqu'à l'élément cible
+            const target = document.querySelector("#presentation-content");
+            
+            if (target)
+            {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+});
+
+
 /* Makes button of presentation section run away from mouse */
 
 const windowHeight = window.innerHeight;
@@ -13,7 +37,6 @@ function runaway(id)
         id.style.left = Math.round(Math.random() * 60) - 25 + '%';
     }
 }
-
 
 /* Gives a .visible class on text-block to make it appear on scroll */
 document.addEventListener("DOMContentLoaded", function ()

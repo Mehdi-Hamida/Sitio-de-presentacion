@@ -235,6 +235,9 @@ section#presentation-section .intro .card {
 section#presentation-section .intro .card p {
   margin-top: 0;
 }
+section#presentation-section .intro .card a.presentation-content_links {
+  cursor: pointer;
+}
 section#presentation-section .intro .card #interesting-website-button {
   margin: 15px 0 0;
   position: relative; /* Makes it able to move away */
@@ -413,7 +416,6 @@ section#timeline #rocket-wrapper {
   align-items: center;
   transition: transform ease 1s;
   border-radius: 100px;
-  -webkit-backdrop-filter: blur(40px);
 }
 section#timeline #rocket-wrapper #rocket-flames {
   height: 0;
