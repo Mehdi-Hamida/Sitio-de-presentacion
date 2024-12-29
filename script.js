@@ -5,14 +5,15 @@
 const windowHeight = window.innerHeight;
 const windowWidth = window.innerWidth;
 
-if (windowWidth > 768)
+function runaway(id)
 {
-    function runaway(id)
+    if (windowWidth > 768)
     {
-      id.style.top = Math.round(Math.random() * 60) - 15 + 'px';
-      id.style.left = Math.round(Math.random() * 60) - 25 + '%';
+        id.style.top = Math.round(Math.random() * 60) - 15 + 'px';
+        id.style.left = Math.round(Math.random() * 60) - 25 + '%';
     }
 }
+
 
 /* Gives a .visible class on text-block to make it appear on scroll */
 document.addEventListener("DOMContentLoaded", function ()
