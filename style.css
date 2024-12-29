@@ -699,7 +699,7 @@ section#end-section .footer-link_wrapper:hover > .footer-link img:hover {
     margin-top: 0;
   }
   section#landing-section {
-    padding: 20px;
+    padding: 20px 0 0 0;
     justify-content: flex-start;
     gap: 10px;
   }

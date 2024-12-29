@@ -1,6 +1,10 @@
 /* -------------------- PRESENTATION SECTION -------------------- */
 
 /* Makes button of presentation section run away from mouse */
+
+const windowHeight = window.innerHeight;
+const windowWidth = window.innerWidth;
+
 if (windowWidth > 768)
 {
     function runaway(id)
@@ -10,7 +14,7 @@ if (windowWidth > 768)
     }
 }
 
-
+/* Gives a .visible class on text-block to make it appear on scroll */
 document.addEventListener("DOMContentLoaded", function ()
 {
     const presentationSection = document.querySelector("#presentation-section");
@@ -21,8 +25,6 @@ document.addEventListener("DOMContentLoaded", function ()
         window.addEventListener("scroll", function ()
         {
             const sectionRect = presentationSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const windowWidth = window.innerWidth;
 
             if (windowWidth > 768)
             {
