@@ -733,6 +733,9 @@ section#end-section .footer-link_wrapper:hover > .footer-link img:hover {
     width: 100%;
     min-height: unset;
   }
+  section#timeline h2 {
+    margin-bottom: 100px;
+  }
   section#timeline .timeline-row {
     padding-left: 40px;
     padding-right: 0;
